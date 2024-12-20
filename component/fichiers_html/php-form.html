@@ -9,13 +9,14 @@
   </head>
   <body>
     <main class="d-flex justify-content-center align-items-center vh-100">
-        <form action="/ma-page-de-traitement" method="post">
-        <fieldset class="d-flex flex-column gap-3 mb-3  border p-4">
+      <form action="recu.php" method="post">
+        <fieldset class="d-flex flex-column gap-3 mb-3 border p-4">
           <!-- Etat civil -->
           <legend class="ps-3">Etat civil</legend>
           <label for="Civilite">Civilité&nbsp;:</label>
-          <select name="Civilité" id="Civilité">
-            <option value="Mr" selected>Mr</option>
+          <select class="form-control" name="Civilité" id="Civilité">
+            <option value="" disabled selected>↓</option>
+            <option value="Mr" >Mr</option>
             <option value="Mme">Mme</option>
             <option value="Autre">Ne se prononce pas</option>
           </select>
@@ -27,13 +28,24 @@
           <input class="form-control" type="text" id="prenom" name="prenom" />
 
           <label for="date_naissance">Date de naissance&nbsp;:</label>
-          <input class="form-control" type="date" id="date_naissance" name="date_naissance" />
+          <input
+            class="form-control"
+            type="date"
+            id="date_naissance"
+            name="date_naissance"
+          />
 
           <label for="commune_naissance">Commune de naissance&nbsp;:</label>
-          <input class="form-control" type="text" id="commune_naissance" name="commune_naissance" />
+          <input
+            class="form-control"
+            type="text"
+            id="commune_naissance"
+            name="commune_naissance"
+          />
 
-          <select name="Civilité" id="Civilité">
-            <option value="Ville" selected>Ville</option>
+          <select class="form-control" name="Ville" id="Ville">
+            <option value="" disabled selected>↓</option>
+            <option value="Ville" >Ville</option>
             <option value="Paris">Paris</option>
             <option value="Lyon">Lyon</option>
             <option value="Lille">Lille</option>
@@ -45,12 +57,14 @@
         <fieldset class="d-flex flex-column gap-3 mb-3 border p-4">
           <legend class="ps-3">Coordonnées</legend>
 
-          <label for="name">Téléphone&nbsp;:</label>
-          <input type="tel" id="tel" name="Téléphone" />
-          <label for="name">Courriel&nbsp;:</label>
-          <input type="text" id="name" name="user_name" />
-          <label for="name">Site Web&nbsp;:</label>
-          <input type="text" id="name" name="user_name" />
+          <label for="tel">Téléphone&nbsp;:</label>
+          <input class="form-control" type="tel" id="tel" name="Téléphone" />
+
+          <label for="email">Courriel&nbsp;:</label>
+          <input class="form-control" type="email" id="email" name="email" />
+
+          <label for="SiteWeb">Site Web&nbsp;:</label>
+          <input class="form-control" type="text" id="SiteWeb" name="SiteWeb" />
         </fieldset>
         <!-- Compétences -->
         <fieldset class="d-flex mb-3 border p-4">
@@ -58,30 +72,25 @@
           <div>
             <label>Niveau d'anglais&nbsp;:</label>
             <label for="C1">C1</label>
-            <input type="radio" id="C1" name="anglais" value="C1" />
-            <label for="B1">B1</label>
+            <input  type="radio" id="C1" name="anglais" value="C1" />
+            <label class="ms-2" for="B1">B1</label>
             <input type="radio" id="B1" name="anglais" value="B1" />
-            <label for="A1">A1</label>
+            <label  class="ms-2" for="A1">A1</label>
             <input type="radio" id="A1" name="anglais" value="A1" />
             <br />
             <label>Langages informatiques&nbsp;:</label>
             <label for="HTML">HTML</label>
-            <input type="checkbox" name="langages" id="HTML" value="HTML" />
-            <label for="CSS">CSS</label>
-            <input type="checkbox" name="langages" id="CSS" value="CSS" />
-            <label for="Javascript">JavaScript</label>
-            <input
-              type="checkbox"
-              name="langages"
-              id="Javascript"
-              value="JavaScript"
-            />
-            <label for="PHP">PHP</label>
-            <input type="checkbox" name="langages" id="PHP" value="PHP" />
+            <input type="checkbox" name="langages[]" id="HTML" value="HTML" />
+            <label class="ms-2" for="CSS">CSS</label>
+            <input type="checkbox" name="langages[]" id="CSS" value="CSS" />
+            <label class="ms-2" for="Javascript">JavaScript</label>
+            <input type="checkbox" name="langages[]" id="Javascript" value="JavaScript"/>
+            <label class="ms-2" for="PHP">PHP</label>
+            <input type="checkbox" name="langages[]" id="PHP" value="PHP" />
           </div>
         </fieldset>
-        <button type="submit">Envoyer</button>
-        <button type="reset">Effacer</button>
+        <button type="submit" class="btn btn-primary">Envoyer</button>
+        <button type="reset" class="btn btn-secondary">Effacer</button>
       </form>
     </main>
     <!-- */Formulaire -->
