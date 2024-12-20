@@ -1,6 +1,6 @@
+<link rel="stylesheet" href="./component/fichiers_html/bootstrap.min (2).css" />
+
 <?php
-
-
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $Civilite = isset($_POST["Civilité"]) ? htmlspecialchars($_POST["Civilité"]) : '';
@@ -38,3 +38,31 @@ echo "</div>";
 // echo var_dump($GLOBALS);
 // echo "<pre/>";
 // echo "</div>";
+
+
+
+// Requete: insertion (insert)
+require_once("cnxConfig.php");
+$db = returnCnx();
+try {
+    // using a prepared statement and substitution marks
+
+    $query = 'INSERT INTO Client (civilite, nom, Prenom, dateNaissance, commune, telephone, courriel, siteWeb, anglais, langues) 
+              VALUES (:civilite, :nom, :prenom, :dateNaissance, :commune, :telephone, :courriel, :siteWeb, :anglais, :langages)';
+    $stmt = $db->prepare($query);
+    $stmt->execute([
+        ':civilite' => $Civilite,
+        ':nom' => $nom,
+        ':prenom' => $prenom,
+        ':dateNaissance' => $date_naissance,
+        ':commune' => $commune_naissance,
+        ':telephone' => $Telephone,
+        ':courriel' => $email,
+        ':siteWeb' => $siteWeb,
+        ':anglais' => $anglais,
+        ':langages' => implode(", ", $langages), // Salvando como string
+    ]);
+    echo "<p>Données insérées avec succès !</p>";
+} catch (PDOException $e) {
+    echo "Erreur : " . $e->getMessage();
+}
