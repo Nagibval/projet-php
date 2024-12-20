@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un Compte</title>
+</head>
+<body>
+    <h2>Formulaire Compte</h2>
+    <form action="php-compte.php" method="post" enctype="multipart/form-data">
+        <label for="pseudo">Pseudo :</label>
+        <input type="text" name="pseudo" id="pseudo" required><br><br>
+        <label for="mdp">Mot de passe :</label>
+        <input type="password" name="mdp" id="mdp" required><br><br>
+        <label for="idClient">ID Client :</label>
+        <input type="text" name="idClient" id="idClient" required><br><br>
+        <label for="photo">Photo :</label>
+        <input type="file" name="photo" id="photo" accept="image/*"><br><br>
+        <button type="submit">Soumettre</button>
+    </form>
+</body>
+</html>

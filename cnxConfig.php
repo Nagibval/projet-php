@@ -6,7 +6,7 @@ function returnCnx()
     $host = 'localhost';
     $dbname = 'dbusers';
     $user = 'root';
-    $password = 'root';
+    $password = '';
     try {
         $connexion = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
         $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -76,4 +76,28 @@ function returnCnx()
 //     echo "Tabela cree";
 // } else {
 //     echo "error avec le BD";
+// }
+
+
+
+// ----------------------------------------- to create a table 'Compte' ------------------------------------------
+
+// $db = returnCnx();
+
+// if ($db) {
+//     $sql = "CREATE TABLE IF NOT EXISTS Compte (
+//                 idCompte INT AUTO_INCREMENT PRIMARY KEY,
+//                 pseudo VARCHAR(50) NOT NULL,
+//                 mdp VARCHAR(255) NOT NULL,
+//                 idClient INT NOT NULL,
+//                 photo VARCHAR(255),
+//                 FOREIGN KEY (idClient) REFERENCES Client(IdClient)
+//             )";
+
+//     
+//         echo "Table 'Compte' créée avec succès !";
+//     } else {
+//         echo "Erreur lors de la création de la table 'Compte'.";
+//     }
+// } 
 // }
