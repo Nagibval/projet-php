@@ -25,7 +25,7 @@ try {
 
         while ($data = $req->fetch()) {
             echo "<tr>";
-            echo "<td class='text-center'>" . $data['IdClient'] . "</td>";
+            echo "<td class='text-center'>"  . $data['IdClient'] . "</td>";
             echo "<td class='text-center'>" . $data['nom'] . "</td>";
             echo "<td class='text-center'>" . $data['Prenom'] . "</td>";
             echo "</tr>";

@@ -148,3 +148,19 @@ function returnCnx()
 // } else {
 //     echo "error avec le BD";
 // }
+
+// ----------------------------------------- clean table ------------------------------------------
+
+// $db = returnCnx();
+
+// if ($db) {
+//     $sql = "TRUNCATE TABLE Client;";
+
+//     try {
+//         $stmt = $db->prepare($sql);
+//         $stmt->execute();
+//         echo "table cleaned";
+//     } catch (PDOException $e) {
+//         echo "Erro : " . $e->getMessage();
+//     }
+// }
