@@ -1,10 +1,10 @@
 <?php
-// require 'cnxConfig.php'; // Inclure la connexion à la base de données
-require '../../cnxConfig.php'; // Si 'cnxConfig.php' est deux dossiers au-dessus
+
+require '../../cnxConfig.php';
 
 
 
-// Vérification que la méthode POST
+// Vérification dee la méthode POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupérer les données du formulaire
     $pseudo = $_POST['pseudo'];
