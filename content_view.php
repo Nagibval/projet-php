@@ -19,6 +19,8 @@ try {
         echo "<th class='text-center'>IdClient</th>";
         echo "<th class='text-center'>Nome</th>";
         echo "<th class='text-center'>Prénom</th>";
+        echo "<th class='text-center'>Telephone</th>";
+        echo "<th class='text-center'>Email</th>";
         echo "</tr>";
         echo "</thead>";
         echo "<tbody>";
@@ -28,6 +30,10 @@ try {
             echo "<td class='text-center'>"  . $data['IdClient'] . "</td>";
             echo "<td class='text-center'>" . $data['nom'] . "</td>";
             echo "<td class='text-center'>" . $data['Prenom'] . "</td>";
+            echo "<td class='text-center'>" . $data['telephone'] . "</td>";
+            echo "<td class='text-center'>" . $data['courriel'] . "</td>";
+
+           
             echo "</tr>";
         }
 

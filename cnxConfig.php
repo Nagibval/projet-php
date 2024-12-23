@@ -1,3 +1,4 @@
+
 <?php
 
 function returnCnx()
@@ -10,7 +11,8 @@ function returnCnx()
     try {
         $connexion = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
         $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        echo "Connexion réussie !";
+        echo "<script>console.log('connexion ok')</script>";
+
     } catch (PDOException $e) {
         echo "Erreur de connexion : " . $e->getMessage();
     }
@@ -18,6 +20,8 @@ function returnCnx()
 
     return $connexion;
 }
+
+
 
 
 // ----------------------------------------- to edit a table ------------------------------------------
