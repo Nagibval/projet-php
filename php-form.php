@@ -17,6 +17,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //--------------------------------------------------------------------------
 
 
+
+
+
+
+
+
+
     $error = [];
 
     if ($Civilite == "") {
@@ -40,6 +47,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($interval->y > 100) {
         $error[] = "Vous devez avoir moins de 100 ans.";
     }
+    
+    require_once("cnxConfig.php");
+    $db = returnCnx();
+    $req = $db->query('select * from Client');
+
+    if ($req->rowCount() > 0) {
+        while ($data = $req->fetch()) {
+            if ($data['nom'] == $nom && $data['Prenom'] == $prenom) {
+                $error[] = "Ce client est deja dans la base de données";
+                break;
+            }
+        }
+    }
 
     if (!empty($error)) {
         echo "<div class='alert alert-danger m-5 p-3'>";
@@ -54,7 +74,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 }
-
 
 echo "<div class='m-5 p-3 bg-light rounded'>";
 echo "<h3>Données de Formulaire:</h3>";
