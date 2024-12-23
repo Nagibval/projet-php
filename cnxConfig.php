@@ -6,7 +6,7 @@ function returnCnx()
     $host = 'localhost';
     $dbname = 'dbusers';
     $user = 'root';
-    $password = 'root';
+    $password = '';
     try {
         $connexion = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
         $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -22,15 +22,20 @@ function returnCnx()
 
 $db = returnCnx();
 
-$query = "INSERT INTO Client (civilite, nom, Prenom, dateNaissance, commune, telephone, courriel, siteWeb, anglais, langues) VALUES
-('M.', 'Dupont', 'Jean', '1985-06-12', 'Paris', 0145678901, 'jean.dupont@email.fr', 'https://jeandupont.fr/', 'Intermediate', 'Français, Anglais'),
-('Mme', 'Durand', 'Marie', '1990-03-25', 'Lyon', 0478563412, 'marie.durand@email.fr', 'https://mariedurand.fr/', 'Fluent', 'Français, Anglais, Espagnol'),
-('M.', 'Moreau', 'Pierre', '1978-11-05', 'Marseille', 0491234567, 'pierre.moreau@email.fr', 'https://moreau.fr/', 'Basic', 'Français, Italien'),
-('Mme', 'Petit', 'Sophie', '1995-08-19', 'Toulouse', 0612345678, 'sophie.petit@email.fr', 'https://sophiepetit.fr/', 'Advanced', 'Français, Anglais, Allemand'),
-('M.', 'Lemoine', 'Thomas', '2001-01-10', 'Bordeaux', 0789012345, 'thomas.lemoine@email.fr', 'https://lemoine.fr/', 'Intermediate', 'Français, Anglais')";
 
-$stmt = $db->prepare($query);
-$stmt->execute();
+
+
+
+
+// $query = "INSERT INTO Client (civilite, nom, Prenom, dateNaissance, commune, telephone, courriel, siteWeb, anglais, langues) VALUES
+// ('M.', 'Dupont', 'Jean', '1985-06-12', 'Paris', 0145678901, 'jean.dupont@email.fr', 'https://jeandupont.fr/', 'Intermediate', 'Français, Anglais'),
+// ('Mme', 'Durand', 'Marie', '1990-03-25', 'Lyon', 0478563412, 'marie.durand@email.fr', 'https://mariedurand.fr/', 'Fluent', 'Français, Anglais, Espagnol'),
+// ('M.', 'Moreau', 'Pierre', '1978-11-05', 'Marseille', 0491234567, 'pierre.moreau@email.fr', 'https://moreau.fr/', 'Basic', 'Français, Italien'),
+// ('Mme', 'Petit', 'Sophie', '1995-08-19', 'Toulouse', 0612345678, 'sophie.petit@email.fr', 'https://sophiepetit.fr/', 'Advanced', 'Français, Anglais, Allemand'),
+// ('M.', 'Lemoine', 'Thomas', '2001-01-10', 'Bordeaux', 0789012345, 'thomas.lemoine@email.fr', 'https://lemoine.fr/', 'Intermediate', 'Français, Anglais')";
+
+// $stmt = $db->prepare($query);
+// $stmt->execute();
 
 
 
@@ -198,3 +203,6 @@ $stmt->execute();
 //         echo "Erro : " . $e->getMessage();
 //     }
 // }
+
+
+

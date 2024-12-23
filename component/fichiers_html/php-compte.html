@@ -1,22 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+    <script type="text/javascript"> 
+        function validate() { 
+            let msg; 
+            let str = document.getElementById("mdp").value; 
+            if (str.match(/[0-9]/g) && 
+                str.match(/[A-Z]/g) && 
+                str.match(/[a-z]/g) && 
+                str.match(/[^a-zA-Z\d]/g) &&
+                str.length >= 6) {
+                msg = "<p style='color:green'>Mot de passe fort.</p>"; 
+                document.getElementById("msg").innerHTML = msg;
+                return true; // Validation réussie
+            } else {
+                msg = "<p style='color:red'>Mot de passe faible. Il doit contenir au moins 6 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.</p>"; 
+                document.getElementById("msg").innerHTML = msg;
+                return false; // Validation échouée
+            }
+        }
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./bootstrap.min (2).css" />
     <title>Ajouter un Compte</title>
 </head>
 <body>
-    <h2>Formulaire Compte</h2>
-    <form action="php-compte.php" method="post" enctype="multipart/form-data">
-        <label for="pseudo">Pseudo :</label>
-        <input type="text" name="pseudo" id="pseudo" required><br><br>
-        <label for="mdp">Mot de passe :</label>
-        <input type="password" name="mdp" id="mdp" required><br><br>
-        <label for="idClient">ID Client :</label>
-        <input type="text" name="idClient" id="idClient" required><br><br>
-        <label for="photo">Photo :</label>
-        <input type="file" name="photo" id="photo" accept="image/*"><br><br>
-        <button type="submit">Soumettre</button>
-    </form>
+    <h1 class="text-white text-center grid cap">Inscription</h1>
+    <main class="d-flex justify-content-center align-items-center mt-5">
+        <form action="php-compte.php" method="post" enctype="multipart/form-data" onsubmit="return validate()">
+            <fieldset class="d-flex flex-column gap-3 mb-3 border p-4">
+                <legend class="ps-3">Compte</legend>
+                <label for="pseudo">Pseudo :</label>
+                <input class="form-control" type="text" name="pseudo" id="pseudo" required><br><br>
+                
+                <label for="mdp">Mot de passe :</label>
+                <input class="form-control" type="password" name="mdp" id="mdp" required><br>
+                <span id="msg"></span><br>
+                
+                <label for="photo">Photo :</label>
+                <input class="form-control" type="file" name="photo" id="photo" accept="image/*"><br><br>
+                
+                <button class="btn btn-primary" type="submit">Soumettre</button>
+            </fieldset>
+        </form>
+    </main>
 </body>
+</html>
 </html>
