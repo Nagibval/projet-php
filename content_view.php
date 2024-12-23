@@ -44,4 +44,5 @@ try {
 } catch (PDOException $e) {
     echo "Erreur : " . $e->getMessage();
 }
-?>
+
+echo "<button type='button' class='btn btn-primary m-3' onclick=\"window.location.href='../projet-php/component/fichiers_html/php-form.html'\">Formulaire Client</button><br>";
