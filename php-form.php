@@ -17,13 +17,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //--------------------------------------------------------------------------
 
 
-
-
-
-
-
-
-
     $error = [];
 
     if ($Civilite == "") {
@@ -54,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($req->rowCount() > 0) {
         while ($data = $req->fetch()) {
-            if ($data['nom'] == $nom && $data['Prenom'] == $prenom) {
+            if ($data['nom'] == $nom && $data['Prenom'] == $prenom && $email == $data['courriel']) {
                 $error[] = "Ce client est deja dans la base de données";
                 break;
             }
