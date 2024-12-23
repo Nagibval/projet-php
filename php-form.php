@@ -9,7 +9,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $prenom = isset($_POST["prenom"]) ? htmlspecialchars($_POST["prenom"]) : '';
     $date_naissance = isset($_POST["date_naissance"]) ? htmlspecialchars($_POST["date_naissance"]) : '';
     $commune_naissance = isset($_POST["commune_naissance"]) ? htmlspecialchars($_POST["commune_naissance"]) : '';
-    $ville = isset($_POST["Ville"]) ? htmlspecialchars($_POST["Ville"]) : '';
     $Telephone = isset($_POST["Téléphone"]) ? htmlspecialchars($_POST["Téléphone"]) : '';
     $email = isset($_POST["email"]) ? htmlspecialchars($_POST["email"]) : '';
     $siteWeb = isset($_POST["SiteWeb"]) ? htmlspecialchars($_POST["SiteWeb"]) : '';
@@ -23,8 +22,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($Civilite == "") {
         $error[] = "Vous devez choisir une <strong>Gênero</strong>.";
     }
-    if (preg_match('/\d/', $nom) || preg_match('/\d/', $prenom)) {
-        $error[] = "Les champs <strong>Nom</strong> et <strong>Prénom</strong> ne peuvent pas contenir de chiffres.";
+    if (preg_match('/\d/', $nom) || preg_match('/\d/', $prenom) || strlen($nom) < 3 || strlen($prenom) < 3) {
+        $error[] = "Les champs <strong>Nom</strong> et <strong>Prénom</strong> ne peuvent pas contenir de chiffres. Et plus de 3 caractères.";
     }
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $error[] = "L'adresse e-mail n'est pas valide.";
@@ -34,6 +33,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     if (!DateTime::createFromFormat('Y-m-d', $date_naissance) || $date_naissance > date('Y-m-d')) {
         $error[] = "La date de naissance est invalide.";
+    }
+    $birthdate = DateTime::createFromFormat('Y-m-d', $date_naissance);
+    $now = new DateTime();
+    $interval = $now->diff($birthdate);
+    if ($interval->y > 100) {
+        $error[] = "Vous devez avoir moins de 100 ans.";
+    }
+    
+    require_once("cnxConfig.php");
+    $db = returnCnx();
+    $req = $db->query('select * from Client');
+
+    if ($req->rowCount() > 0) {
+        while ($data = $req->fetch()) {
+            if ($data['nom'] == $nom && $data['Prenom'] == $prenom && $email == $data['courriel']) {
+                $error[] = "Ce client est deja dans la base de données";
+                break;
+            }
+        }
     }
 
     if (!empty($error)) {
@@ -50,7 +68,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-
 echo "<div class='m-5 p-3 bg-light rounded'>";
 echo "<h3>Données de Formulaire:</h3>";
 echo "<p><strong>Civilité :</strong> " . $Civilite . "</p>";
@@ -58,7 +75,6 @@ echo "<p><strong>Nom :</strong> " . $nom . "</p>";
 echo "<p><strong>Prénom :</strong> " . $prenom . "</p>";
 echo "<p><strong>Date de Naissance :</strong> " . $date_naissance . "</p>";
 echo "<p><strong>Commune de Naissance :</strong> " . $commune_naissance . "</p>";
-echo "<p><strong>Ville :</strong> " . $ville . "</p>";
 echo "<p><strong>Téléphone :</strong> " . $Telephone . "</p>";
 echo "<p><strong>Email :</strong> " . $email . "</p>";
 echo "<p><strong>Site Web :</strong> " . $siteWeb . "</p>";
@@ -67,6 +83,7 @@ echo "<p><strong>Préférences (Langages) :</strong> " . implode(", ", $langages
 echo "</div>";
 
 
+echo "<button type='button' class='btn btn-primary m-3' onclick=\"window.location.href='content_view.php'\">Données</button><br>";
 
 
 // echo "<pre>";

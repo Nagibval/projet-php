@@ -8,14 +8,14 @@
   </head>
   <body>
     
-    <main class="d-flex justify-content-center align-items-center mt-5">
+    <main class="d-flex justify-content-center align-items-center mt-5 mb-5">
       <form action="../../php-form.php" method="post">
         <fieldset class="d-flex flex-column gap-3 mb-3 border p-4">
           <!-- Etat civil -->
           <legend class="ps-3">Etat civil</legend>
           <label for="Civilite">Civilité&nbsp;:</label>
-          <select class="form-control" name="Civilité" id="Civilité">
-            <option value="" disabled selected>↓</option>
+          <select class="form-select" name="Civilité" id="Civilité">
+            <option value="" disabled selected></option>
             <option value="Mr">Mr</option>
             <option value="Mme">Mme</option>
             <option value="Autre">Ne se prononce pas</option>
@@ -40,19 +40,17 @@
           />
 
           <label for="commune_naissance">Commune de naissance&nbsp;:</label>
-          <input
-            class="form-control"
-            type="text"
-            id="commune_naissance"
-            name="commune_naissance"
-          />
-
-          <select class="form-control" name="Ville" id="Ville">
-            <option value="" disabled selected>↓</option>
+          <select class="form-select" name="commune_naissance" id="commune_naissance">
+            <!-- // colocar a flexa no final do select  -->
+            <option disabled selected></option>
             <option value="Paris">Paris</option>
+            <option value="Marseille">Marseille</option>
             <option value="Lyon">Lyon</option>
             <option value="Lille">Lille</option>
             <option value="Bordeaux">Bordeaux</option>
+            <option value="Nantes">Nantes</option>
+            <option value="Strasbourg">Strasbourg</option>
+            <option value="Toulouse">Toulouse</option>
           </select>
         </fieldset>
 
