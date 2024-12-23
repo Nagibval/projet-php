@@ -3,7 +3,6 @@
 
 function returnCnx()
 {
-
     $host = 'localhost';
     $dbname = 'dbusers';
     $user = 'root';
@@ -11,13 +10,11 @@ function returnCnx()
     try {
         $connexion = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
         $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        echo "<script>console.log('connexion ok')</script>";
-
+        // to show the result in the console
+        echo "<script>Returns the number of rows affected by the last SQL statement.log('connexion ok')</script>";
     } catch (PDOException $e) {
         echo "Erreur de connexion : " . $e->getMessage();
     }
-
-
     return $connexion;
 }
 
