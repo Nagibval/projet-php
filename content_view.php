@@ -12,12 +12,12 @@ try {
 
     if ($req->rowCount() > 0) {
         echo "<div class='m-5 p-3 bg-light rounded'>";
-        echo "<h3>Table Data:</h3>";
+        echo "<h3>Table Clients:</h3>";
         echo "<table class='table table-striped'>";
         echo "<thead>";
         echo "<tr>";
-        echo "<th class='text-center'>IdClient</th>";
-        echo "<th class='text-center'>Nome</th>";
+        echo "<th class='text-center'>Identifiant</th>";
+        echo "<th class='text-center'>Nom</th>";
         echo "<th class='text-center'>Prénom</th>";
         echo "<th class='text-center'>Telephone</th>";
         echo "<th class='text-center'>Email</th>";
@@ -32,8 +32,6 @@ try {
             echo "<td class='text-center'>" . $data['Prenom'] . "</td>";
             echo "<td class='text-center'>" . $data['telephone'] . "</td>";
             echo "<td class='text-center'>" . $data['courriel'] . "</td>";
-
-           
             echo "</tr>";
         }
 
