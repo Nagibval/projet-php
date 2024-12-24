@@ -9,18 +9,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupérer les données du formulaire
     $pseudo = $_POST['pseudo'];
     $mdp = password_hash($_POST['mdp'], PASSWORD_DEFAULT); // Hash du mot de passe
+    $confirm_mdp = $_POST['confirm_mdp'];
+
+
+
 
     // Gestion de l'upload de la photo
-    $photoPath = '';
+    $photoPath = ''; //Variable pour stocker le chemin de la photo
     if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
-        // Dossier où les photos sont stockées
+        
         $uploadDir = 'upload/';
         
      
         // Nom du fichier photo
         $photoName = basename($_FILES['photo']['name']);
         
-        // Créer un chemin d'upload complet pour éviter les conflits de noms de fichiers
+        //chemin d'upload complet pour éviter les conflits de noms de fichiers
         $photoPath = $uploadDir . time() . '-' . $photoName;
 
         // Déplacer la photo téléchargée dans le dossier "upload"
@@ -29,70 +33,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit;
         }
     }
-
-
-
-// Gestion des erreurs
-$errors = [];
-// function lookPass($mdp) {
-//     if (preg_match('/^(?=.[a-z])(?=.[A-Z])(?=.*[0-9])[\w$@]{6,}$/', ($mdp))==0)
-//     {
-//         $error[]= "gfsdg";}
-// }
-// lookPass($mdp);
-
-// echo lookPass("peEss_1");
-// Validation du pseudo
-if (strlen($pseudo) < 4) {
-    $errors[] = "Le pseudo doit contenir au moins 4 caractères.";
-}
-
-// // Validation du mot de passe
-// if (strlen($mdp) < 6) {
-//     $errors[] = "Le mot de passe doit contenir au moins 6 caractères.";
-// }
-// if (!preg_match('/[0-9]/', $mdp)) {
-//     $errors[] = "Le mot de passe doit contenir au moins un chiffre.";
-// }
-// if (!preg_match('/[\W]/', $mdp)) {
-//     $errors[] = "Le mot de passe doit contenir au moins un caractère spécial.";
-// }
-
-if (!empty($errors)) {
-    echo "<div class='alert alert-danger'>";
-    echo "<strong>Erreurs :</strong><ul>";
-    foreach ($errors as $error) {
-        echo "<li>$error</li>";
-    }
-    echo "</ul></div>";
-    echo "<div class='text-center'>
-            <button class='btn btn-primary' onclick='history.back()'>Corriger et renvoyer</button>
-          </div>";
-    exit; // Arrête l'exécution si des erreurs sont présentes
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
 
     function maxidClient() {
         $db = returnCnx();
@@ -122,3 +62,46 @@ if (!empty($errors)) {
 } else {
     echo "Méthode non autorisée.";
 }
+
+
+
+
+// Gestion des erreurs
+// $errors = [];
+// function lookPass($mdp) {
+//     if (preg_match('/^(?=.[a-z])(?=.[A-Z])(?=.*[0-9])[\w$@]{6,}$/', ($mdp))==0)
+//     {
+//         $error[]= "gfsdg";}
+// }
+// lookPass($mdp);
+
+// echo lookPass("peEss_1");
+// Validation du pseudo
+// if (strlen($pseudo) < 4) {
+//     $errors[] = "Le pseudo doit contenir au moins 4 caractères.";
+// }
+
+// // Validation du mot de passe
+// if (strlen($mdp) < 6) {
+//     $errors[] = "Le mot de passe doit contenir au moins 6 caractères.";
+// }
+// if (!preg_match('/[0-9]/', $mdp)) {
+//     $errors[] = "Le mot de passe doit contenir au moins un chiffre.";
+// }
+// if (!preg_match('/[\W]/', $mdp)) {
+//     $errors[] = "Le mot de passe doit contenir au moins un caractère spécial.";
+// }
+
+// if (!empty($errors)) {
+//     echo "<div class='alert alert-danger'>";
+//     echo "<strong>Erreurs :</strong><ul>";
+//     foreach ($errors as $error) {
+//         echo "<li>$error</li>";
+//     }
+//     echo "</ul></div>";
+//     echo "<div class='text-center'>
+//             <button class='btn btn-primary' onclick='history.back()'>Corriger et renvoyer</button>
+//           </div>";
+//     exit; // Arrête l'exécution si des erreurs sont présentes
+
+// }
