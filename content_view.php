@@ -9,7 +9,7 @@ try {
 
 
     $req = $db->query('select * from Client');
-
+    // Returns the number of rows affected by the last SQL statement
     if ($req->rowCount() > 0) {
         echo "<div class='m-5 p-3 bg-light rounded w-75'>";
         echo "<h3>Table Clients:</h3>";
@@ -24,7 +24,7 @@ try {
         echo "</tr>";
         echo "</thead>";
         echo "<tbody>";
-
+        // to construct the table with a rowfor each client
         while ($data = $req->fetch()) {
             echo "<tr>";
             echo "<td class='text-center'>"  . $data['IdClient'] . "</td>";

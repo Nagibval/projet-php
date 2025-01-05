@@ -1,22 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+    <script type="text/javascript"> 
+        function validate() { 
+            let msg; 
+            let str = document.getElementById("mdp").value;
+            let confirmMdp = document.getElementById("confirm_mdp").value;
+
+            if (str !== confirmMdp) {
+                msg = "<p style='color:red'>Les mots de passe ne correspondent pas.</p>"; 
+                document.getElementById("msg").innerHTML = msg;
+                return false;
+            }
+
+            
+            if (str.match(/[0-9]/g) && //contient au moins 1chiffre
+                str.match(/[A-Z]/g) && //au moins une majuscule
+                str.match(/[a-z]/g) && //au moins une minuscule
+                str.match(/[^a-zA-Z\d]/g) &&//au moins un caractère spécial
+                str.length >= 6) {
+                msg = "<p style='color:green'>Mot de passe valide.</p>"; 
+                document.getElementById("msg").innerHTML = msg;
+                return true; // Validation réussie
+            } else {
+                msg = "<p style='color:red'>Mot de passe faible. Il doit contenir au moins 6 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.</p>"; 
+                document.getElementById("msg").innerHTML = msg;
+                return false; // Validation échouée
+            }
+        }
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./bootstrap.min (2).css" />
     <title>Ajouter un Compte</title>
 </head>
 <body>
-    <h2>Formulaire Compte</h2>
-    <form action="php-compte.php" method="post" enctype="multipart/form-data">
-        <label for="pseudo">Pseudo :</label>
-        <input type="text" name="pseudo" id="pseudo" required><br><br>
-        <label for="mdp">Mot de passe :</label>
-        <input type="password" name="mdp" id="mdp" required><br><br>
-        <label for="idClient">ID Client :</label>
-        <input type="text" name="idClient" id="idClient" required><br><br>
-        <label for="photo">Photo :</label>
-        <input type="file" name="photo" id="photo" accept="image/*"><br><br>
-        <button type="submit">Soumettre</button>
-    </form>
+    <h1 class="text-white text-center grid cap mt-4">Inscription</h1>
+    <main class="d-flex justify-content-center align-items-center">
+        <form action="php-compte.php" method="post" enctype="multipart/form-data" onsubmit="return validate()">
+            <fieldset class="d-flex flex-column gap-0 mb-1 mt-1 border p-4">
+                <legend class="ps-3">Compte</legend>
+                <label class="mb-1" for="pseudo">Pseudo* :</label>
+                <input class="form-control mb-1" type="text" name="pseudo" id="pseudo" required><br><br>
+                
+                <label class="mb-1" for="mdp">Mot de passe* :</label>
+                <input class="form-control mb-1" type="password" name="mdp" id="mdp" required><br>
+
+                <label class="mb-1" for="confirm_mdp">Confirmer le mot de passe* :</label>
+                <input class="form-control mb-1" type="password" name="confirm_mdp" id="confirm_mdp" required><br>
+                
+
+                <span id="msg"></span><br>
+                
+                <label class="mt-1" for="photo">Photo :</label>
+                <input class="form-control mt-1" type="file" name="photo" id="photo" accept="image/*"><br><br>
+                
+                <button class="btn btn-primary" type="submit">Soumettre</button>
+            </fieldset>
+        </form>
+    </main>
 </body>
+</html>
 </html>

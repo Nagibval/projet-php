@@ -3,24 +3,24 @@
 
 function returnCnx()
 {
-
     $host = 'localhost';
     $dbname = 'dbusers';
     $user = 'root';
-    $password = 'root';
+    $password = '';
     try {
         $connexion = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
-        $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        echo "<script>console.log('connexion ok')</script>";
 
+        $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);//gestion des erreurs et simplifie le débogage.
+        // to show the result in the console
+        echo "<script>Returns the number of rows affected by the last SQL statement.log('connexion ok')</script>";
     } catch (PDOException $e) {
         echo "Erreur de connexion : " . $e->getMessage();
     }
-
-
     return $connexion;
 }
 
+
+$db = returnCnx();
 
 
 
@@ -82,9 +82,27 @@ function returnCnx()
 //     echo "error avec le BD";
 // }
 
+// ------------------------------------creation de table compte------------------------------------------
+
+// CREATE TABLE IF NOT EXISTS compte (
+//     idCompte INT AUTO_INCREMENT PRIMARY KEY,
+//     pseudo VARCHAR(50) NOT NULL,
+//     mdp VARCHAR(255) NOT NULL,
+//     idClient INT NOT NULL,
+//     FOREIGN KEY (idClient) REFERENCES client(idClient) ON DELETE CASCADE
+// ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+// ";
+
+// // Exécution des requêtes
+// $connexion->exec($sql);
+
+// echo "Base de données et tables créées avec succès !";
+// } catch (PDOException $e) {
+// echo "Erreur : " . $e->getMessage();
+// }
 
 
-// ----------------------------------------- to create the column photo ------------------------------------------
+// ----------------------------------------- creation colonne photo ------------------------------------------
 
 // $db = returnCnx();
 
@@ -116,7 +134,7 @@ function returnCnx()
 // }
 
 
-// ----------------------------------------- list of clients for tests ------------------------------------------
+// ----------------------------------------- liste de clients test ------------------------------------------
 
 
 // $db = returnCnx();
@@ -169,3 +187,6 @@ function returnCnx()
 //         echo "Erro : " . $e->getMessage();
 //     }
 // }
+
+
+
