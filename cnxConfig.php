@@ -12,7 +12,7 @@ function returnCnx()
 
         $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);//gestion des erreurs et simplifie le débogage.
         // to show the result in the console
-        echo "<script>Returns the number of rows affected by the last SQL statement.log('connexion ok')</script>";
+        echo "<script>console.log('Connexion OK');</script>";
     } catch (PDOException $e) {
         echo "Erreur de connexion : " . $e->getMessage();
     }
