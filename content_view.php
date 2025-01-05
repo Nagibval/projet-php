@@ -11,9 +11,9 @@ try {
     $req = $db->query('select * from Client');
 
     if ($req->rowCount() > 0) {
-        echo "<div class='m-5 p-3 bg-light rounded'>";
+        echo "<div class='m-5 p-3 bg-light rounded w-75'>";
         echo "<h3>Table Clients:</h3>";
-        echo "<table class='table table-striped'>";
+        echo "<table class='table table-striped '>";
         echo "<thead>";
         echo "<tr>";
         echo "<th class='text-center'>Identifiant</th>";
